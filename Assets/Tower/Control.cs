@@ -71,7 +71,7 @@ public class Control : MonoBehaviour
         rigidbody.AddTorque(0f, xAxis * xAxisSensitivity, 0f, ForceMode.Acceleration);
 
         // Debug
-        print("y Angular vel = " + rigidbody.angularVelocity.y);
-        print("xAxis = " + xAxis);
+        //print("y Angular vel = " + rigidbody.angularVelocity.y);
+        //print("xAxis = " + xAxis);
     }
 }
