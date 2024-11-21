@@ -39,27 +39,39 @@ public class Control : MonoBehaviour
         if (xAxis == 0f)
         {
             // Set angular velocity to zero if very low
-            if (0.05f > rigidbody.angularVelocity.y && -0.05f < rigidbody.angularVelocity.y)
+            if (0.1f > rigidbody.angularVelocity.y && -0.1f < rigidbody.angularVelocity.y)
             {
                 rigidbody.angularVelocity = Vector3.zero;
             }
             // if rotating right, set input to counter-rotate left
             else if (0 < rigidbody.angularVelocity.y)
             {
-                xAxis = -1f;
+                //xAxis = -1f;
+                xAxis = -1f + -rigidbody.angularVelocity.y;
             }
             // if rotating left, set input to counter-rotate right
             else
             {
-                xAxis = 1f;
+                //xAxis = 1f;
+                xAxis = 1f + -rigidbody.angularVelocity.y;
             }
+        }
+        // if input turn right, but turret still moving left
+        else if (0 < xAxis && 0 > rigidbody.angularVelocity.y)
+        {
+            xAxis = 1f + -rigidbody.angularVelocity.y;
+        }
+        // if input turn left, but turret still moving right
+        else if (0 > xAxis && 0 < rigidbody.angularVelocity.y)
+        {
+            xAxis = -1f + -rigidbody.angularVelocity.y;
         }
 
         // Rotate turret arount y-axis by adding torque (ForceMode isn't important)
         rigidbody.AddTorque(0f, xAxis * xAxisSensitivity, 0f, ForceMode.Acceleration);
 
         // Debug
-        //print("y Angular vel = " + rigidbody.angularVelocity.y);
-        //print("xAxis = " + xAxis);
+        print("y Angular vel = " + rigidbody.angularVelocity.y);
+        print("xAxis = " + xAxis);
     }
 }
