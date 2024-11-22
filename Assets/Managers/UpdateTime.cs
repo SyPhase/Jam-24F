@@ -9,9 +9,9 @@ public class UpdateTime : MonoBehaviour
     [SerializeField] Light directionalLight;
     [SerializeField] Transform sunParent;
     [Tooltip("Speed at which the 'sun' will rotate. Bigger numbers is faster")]
-    [SerializeField] float sunRotationSpeed = 0.01f;
+    [SerializeField] float sunRotationSpeed = 0.024f; // 0.024 will complete one rotation in 5 minutes
 
-    float gameTime = 0f;
+    [SerializeField] float levelTime = 300f;
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class UpdateTime : MonoBehaviour
     void FixedUpdate()
     {
         // Keeps time
-        gameTime += Time.fixedDeltaTime;
+        levelTime -= Time.fixedDeltaTime;
 
         UpdateUI();
         RotateDirectionalLight();
@@ -31,10 +31,11 @@ public class UpdateTime : MonoBehaviour
     // Updates the timer text
     void UpdateUI()
     {
-        string temp = gameTime.ToString();
+        string temp = levelTime.ToString();
         temp = temp.Substring(0, temp.IndexOf(".")); // sometimes "." or "," because localization bug...
 
         // TODO : Format timer like 00:00
+        //https://stackoverflow.com/questions/463642/how-can-i-convert-seconds-into-hourminutessecondsmilliseconds-time
 
         timeText.text = temp;
     }
@@ -62,6 +63,6 @@ public class UpdateTime : MonoBehaviour
     // Can be used to reset game time if the game is restarted
     void ResetGameTime()
     {
-        gameTime = 0f;
+        levelTime = 0f;
     }
 }
