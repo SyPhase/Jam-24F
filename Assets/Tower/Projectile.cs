@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
 
     void OnEnable()
     {
-        rigidbody.velocity = speed * Vector3.forward;
+        rigidbody.velocity = speed * transform.up;
     }
 
     void OnCollisionEnter(Collision collision)

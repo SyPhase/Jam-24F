@@ -24,6 +24,7 @@ public class Control : MonoBehaviour
     float fire = 0f;
     float timeSinceFire = 0f;
     float lastFireState = 0f;
+    bool fireLeft = true;
 
     // Start is called once when the scene finishes loading
     private void Start()
@@ -86,7 +87,20 @@ public class Control : MonoBehaviour
         if (fire != lastFireState && fire != 0 && timeSinceFire > fireDelay)
         {
             timeSinceFire = 0f;
-            Instantiate(projectile, leftBarrel.position, Quaternion.identity);
+
+            Vector3 firePos;
+            if (fireLeft)
+            {
+                firePos = leftBarrel.position;
+                fireLeft = false;
+            }
+            else
+            {
+                firePos = rightBarrel.position;
+                fireLeft = true;
+            }
+
+            Instantiate(projectile, firePos, leftBarrel.rotation);
         }
         lastFireState = fire;
     }
