@@ -10,6 +10,11 @@ public class Control : MonoBehaviour
 
     [SerializeField] float xAxisMaxSpeed = 1f;
 
+    [SerializeField] Transform model;
+    [SerializeField] Transform leftBarrel;
+    [SerializeField] Transform rightBarrel;
+    [SerializeField] GameObject projectile;
+
     // Private variables
     Rigidbody rigidbody;
 
@@ -73,5 +78,10 @@ public class Control : MonoBehaviour
         // Debug
         //print("y Angular vel = " + rigidbody.angularVelocity.y);
         //print("xAxis = " + xAxis);
+
+        if (fire != 0)
+        {
+            Instantiate(projectile, leftBarrel.position, Quaternion.identity);
+        }
     }
 }
