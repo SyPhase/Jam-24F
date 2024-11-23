@@ -9,6 +9,7 @@ public class Control : MonoBehaviour
     [SerializeField] float yAxisSensitivity = 10f;
 
     [SerializeField] float xAxisMaxSpeed = 1f;
+    [SerializeField] float fireDelay = 1f;
 
     [SerializeField] Transform model;
     [SerializeField] Transform leftBarrel;
@@ -21,6 +22,8 @@ public class Control : MonoBehaviour
     float xAxis = 0f;
     float yAxis = 0f;
     float fire = 0f;
+    float timeSinceFire = 0f;
+    float lastFireState = 0f;
 
     // Start is called once when the scene finishes loading
     private void Start()
@@ -79,9 +82,12 @@ public class Control : MonoBehaviour
         //print("y Angular vel = " + rigidbody.angularVelocity.y);
         //print("xAxis = " + xAxis);
 
-        if (fire != 0)
+        timeSinceFire += Time.fixedDeltaTime;
+        if (fire != lastFireState && fire != 0 && timeSinceFire > fireDelay)
         {
+            timeSinceFire = 0f;
             Instantiate(projectile, leftBarrel.position, Quaternion.identity);
         }
+        lastFireState = fire;
     }
 }
