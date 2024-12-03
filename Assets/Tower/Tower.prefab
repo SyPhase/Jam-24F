@@ -851,6 +851,7 @@ MonoBehaviour:
   xAxisSensitivity: 2
   yAxisSensitivity: 10
   xAxisMaxSpeed: 1
+  fireDelay: 1
   model: {fileID: 7563296286500895548}
   leftBarrel: {fileID: 1137806724214391803}
   rightBarrel: {fileID: 5678686675788029091}
@@ -893,7 +894,7 @@ GameObject:
   - component: {fileID: 1087469609163506031}
   m_Layer: 0
   m_Name: Tower
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
