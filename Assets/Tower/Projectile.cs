@@ -23,7 +23,8 @@ public class Projectile : MonoBehaviour
         // EXPLODE + DAMAGE (Spawn Explosion?)
 
         // Deactivate this projectile
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        Destroy(gameObject); // Permanently delete this projectile instance
     }
 
     void OnDisable()
