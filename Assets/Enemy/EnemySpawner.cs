@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
         if (lastSpawnTime > timeBetweenSpawn) // if time is more than the time needed between each spawn
         {
             lastSpawnTime = 0f; // Reset Time
-            Instantiate(enemyPrefab, transform.position, transform.rotation); // Spawn Enemy
+            Instantiate(enemyPrefab, transform.position, transform.rotation, transform); // Spawn Enemy
 
             timeBetweenSpawn -= spawnAcceleration; // Reduce delay between spawns
             if (timeBetweenSpawn < minTimeBetweenSpawn) // Ensure a minimun time between spawns

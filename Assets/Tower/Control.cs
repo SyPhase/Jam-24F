@@ -39,6 +39,8 @@ public class Control : MonoBehaviour
     // FixedUpdate is called once per physics time set (0.02s)
     void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); } // Exit game is "Esc" is pressed
+
         // Get and store Inputs
         xAxis = Input.GetAxis("Horizontal");
         yAxis = Input.GetAxis("Vertical");

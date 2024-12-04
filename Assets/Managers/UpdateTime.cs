@@ -13,6 +13,10 @@ public class UpdateTime : MonoBehaviour
 
     [SerializeField] float levelTime = 300f;
 
+    [SerializeField] GameObject enemySpawners;
+
+    bool win = false;
+
     void Start()
     {
         // Initializes the directional lights position if moved
@@ -31,6 +35,15 @@ public class UpdateTime : MonoBehaviour
     // Updates the timer text
     void UpdateUI()
     {
+        if (levelTime <= 0)
+        {
+            win = true;
+            timeText.text = "VICTORY";
+            enemySpawners.SetActive(false);
+        }
+
+        if (win) { return; }
+
         string temp = levelTime.ToString();
         temp = temp.Substring(0, temp.IndexOf(".")); // sometimes "." or "," because localization bug...
 
