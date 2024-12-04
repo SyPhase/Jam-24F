@@ -9,6 +9,7 @@ public class EnemyFollow : MonoBehaviour
     [SerializeField] float gravity = -0.1f;
     Transform target;
     CharacterController characterController;
+    bool isDead = false;
 
     void Start()
     {
@@ -18,9 +19,23 @@ public class EnemyFollow : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 motion = -(transform.position - Vector3.MoveTowards(transform.position, target.position, speed));
-        motion.y = gravity;
+        Vector3 motion = Vector3.zero;
+
+        if (!isDead)
+        {
+            motion = -(transform.position - Vector3.MoveTowards(transform.position, target.position, speed));
+            motion.y = gravity;
+        }
+        else
+        {
+            motion.y = 25f * -gravity;
+        }
 
         characterController.Move(motion);
+    }
+
+    public void Kill()
+    {
+        isDead = true;
     }
 }
