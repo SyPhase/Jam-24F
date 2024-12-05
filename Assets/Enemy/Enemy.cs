@@ -35,4 +35,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
         Destroy(gameObject); // Permanently delete this enemy instance
     }
+
+    public int GetHealth()
+    {
+        return health;
+    }
 }

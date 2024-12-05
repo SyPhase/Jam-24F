@@ -8,12 +8,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float maxTimeBetweenSpawn = 10f;
     [SerializeField] float minTimeBetweenSpawn = 1f;
     [SerializeField] float spawnAcceleration = 0.2f;
+    [SerializeField] float startDelay = 0f;
     float timeBetweenSpawn;
-    float lastSpawnTime = 0f;
+    float lastSpawnTime;
 
     void Start()
     {
         timeBetweenSpawn = maxTimeBetweenSpawn;
+        lastSpawnTime = -startDelay;
     }
 
     void FixedUpdate()

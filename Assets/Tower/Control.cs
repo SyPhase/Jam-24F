@@ -6,7 +6,7 @@ public class Control : MonoBehaviour
 {
     // Can be set in the Inspector
     [SerializeField] float xAxisSensitivity = 10f;
-    [SerializeField] float yAxisSensitivity = 10f;
+    [SerializeField] float yAxisSensitivity = 0.2f;
 
     [SerializeField] float xAxisMaxSpeed = 1f;
     [SerializeField] float fireDelay = 1f;
@@ -84,6 +84,25 @@ public class Control : MonoBehaviour
         // Debug
         //print("y Angular vel = " + rigidbody.angularVelocity.y);
         //print("xAxis = " + xAxis);
+
+        if (yAxis != 0)
+        {
+            Vector3 eAngle = model.transform.localRotation.eulerAngles;
+            eAngle.z += -yAxis * yAxisSensitivity;
+
+            //if (eAngle.z >) // 60 low (65) : 30 high
+            if (eAngle.z <= 30f)
+            {
+                eAngle.z = 30f;
+            }
+            else if (eAngle.z >= 65f)
+            {
+                eAngle.z = 65f;
+            }
+
+            Quaternion qAngle = Quaternion.Euler(eAngle);
+            model.transform.localRotation = qAngle;
+        }
 
         timeSinceFire += Time.fixedDeltaTime;
         if (fire != lastFireState && fire != 0 && timeSinceFire > fireDelay)

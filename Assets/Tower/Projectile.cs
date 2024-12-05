@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject); // Permanently delete this projectile instance
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out IDamageable hit))
         {

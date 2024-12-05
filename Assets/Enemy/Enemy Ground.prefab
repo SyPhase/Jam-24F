@@ -115,6 +115,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1498911523333014244, guid: 5d6a4cdc104ca4f4b93734fc856fe9af, type: 3}
+      propertyPath: speed
+      value: 0.06
+      objectReference: {fileID: 0}
     - target: {fileID: 4861197413209585082, guid: 5d6a4cdc104ca4f4b93734fc856fe9af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -157,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6902046757612897780, guid: 5d6a4cdc104ca4f4b93734fc856fe9af, type: 3}
       propertyPath: m_Name
-      value: Enemy Default Ground
+      value: Enemy Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

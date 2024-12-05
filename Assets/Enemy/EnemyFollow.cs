@@ -14,7 +14,7 @@ public class EnemyFollow : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        target = FindObjectOfType<Tower>().transform; // Finds the base of the tower as target
     }
 
     void FixedUpdate()
