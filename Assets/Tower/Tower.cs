@@ -21,6 +21,7 @@ public class Tower : MonoBehaviour
             healthText.text = "GAME OVER";
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reload this scene
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Needed twice since I used OnDestroy to spawn more enemies...
         }
     }
 }

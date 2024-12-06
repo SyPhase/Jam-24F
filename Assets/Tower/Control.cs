@@ -16,6 +16,9 @@ public class Control : MonoBehaviour
     [SerializeField] Transform rightBarrel;
     [SerializeField] GameObject projectile;
 
+    [SerializeField] AudioSource horizontalTurnSound;
+    [SerializeField] AudioSource verticalTurnSound;
+
     // Private variables
     Rigidbody rigidbody;
 
@@ -34,6 +37,12 @@ public class Control : MonoBehaviour
 
         // Set maximum angular velocity (clamp) so it won't spin too fast
         rigidbody.maxAngularVelocity = xAxisMaxSpeed;
+
+        // Setup Rotatinf SFX
+        horizontalTurnSound.Play();
+        horizontalTurnSound.Pause();
+        verticalTurnSound.Play();
+        verticalTurnSound.Pause();
     }
 
     // FixedUpdate is called once per physics time set (0.02s)
@@ -81,6 +90,19 @@ public class Control : MonoBehaviour
         // Rotate turret arount y-axis by adding torque (ForceMode isn't important)
         rigidbody.AddTorque(0f, xAxis * xAxisSensitivity, 0f, ForceMode.Acceleration);
 
+        // SFX
+        if (!horizontalTurnSound.isPlaying)
+        {
+            if (xAxis != 0f)
+            {
+                horizontalTurnSound.UnPause(); // Start turning SFX
+            }
+        }
+        else if (xAxis == 0f)
+        {
+            horizontalTurnSound.Pause(); // Stop turning SFX
+        }
+
         // Debug
         //print("y Angular vel = " + rigidbody.angularVelocity.y);
         //print("xAxis = " + xAxis);
@@ -102,6 +124,29 @@ public class Control : MonoBehaviour
 
             Quaternion qAngle = Quaternion.Euler(eAngle);
             model.transform.localRotation = qAngle;
+
+            bool atMaxAngle = false;
+            if (eAngle.z == 65f || eAngle.z == 30f)
+            {
+                atMaxAngle = true;
+            }
+
+            // SFX
+            if (!verticalTurnSound.isPlaying)
+            {
+                if (!atMaxAngle)
+                {
+                    verticalTurnSound.UnPause(); // Stop turning SFX
+                }
+            }
+            else if (atMaxAngle)
+            {
+                verticalTurnSound.Pause();
+            }
+        }
+        else
+        {
+            verticalTurnSound.Pause(); // Stop turning SFX
         }
 
         timeSinceFire += Time.fixedDeltaTime;

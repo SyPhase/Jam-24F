@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7123194767312826535}
   - component: {fileID: 1237163082886024486}
   - component: {fileID: 2682594675099347441}
+  - component: {fileID: 7489325754331014510}
   m_Layer: 8
   m_Name: Projectile
   m_TagString: Untagged
@@ -76,6 +77,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &7489325754331014510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057828129516945587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 132ef6ccfbdcff343a91abfbdb258f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: ee89049f855796044959f7d4dce867c8, type: 3}
+  volume: 0.8
+  pitch: {x: 0.8, y: 1.2}
 --- !u!1 &1829899353512693317
 GameObject:
   m_ObjectHideFlags: 0
